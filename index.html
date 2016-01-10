@@ -31,11 +31,21 @@
 <body class="container">
 <section id="todoapp" class="well page">
     <header>
-        <h1>TODO APP</h1>
+        <h1 class="text-center">TODO APP</h1>
         <div class="list-group">
-            <div class="form-group list-group-item">
-                <input id="new-todo" type="text" class="form-control" placeholder="입력하세요" autofocus>
-            </div>
+            <form action="/ass">
+                <div class="form-group list-group-item row">
+                    <div class="col-md-10 col-xs-10">
+                        <input id="new-todo" type="text" class="form-control" placeholder="입력하세요" autofocus>
+                    </div>
+                    <div class="col-md-2 col-xs-2">
+                        <button type="button" id="add-todo" class="btn btn-success btn-raised">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                        <!--<input id="submit-btn" class="btn btn-raised btn-danger" type="submit" value="이상한버튼">-->
+                    </div>
+                </div>
+            </form>
         </div>
 
     </header>

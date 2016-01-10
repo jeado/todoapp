@@ -1,27 +1,8 @@
 /**
  * Created by u212-pc1 on 2016. 1. 10..
  */
-var todos = [
-    {
-        done : false,
-        todo : "할일1"
-    },
-    {
-        done : true,
-        todo : "할일2"
-    },
-    {
-        done : false,
-        todo : "할일3"
-    }
-];
-
 var ul = document.createElement("ul");
 ul.className = "list-group";
-
-todos.map(createTodoEl).forEach(function(el){
-    ul.appendChild(el);
-});
 
 function createTodoEl(todo){
     var liEl = document.createElement("li");
@@ -44,4 +25,43 @@ function createTodoEl(todo){
     liEl.appendChild(viewDivEl);
     return liEl;
 }
+
 document.querySelector("#main").appendChild(ul);
+$("$new-todo").on("keydown")
+document.querySelector("#new-todo").addEventListener("keydown",function(evt){
+    if(evt.keyCode === 13){
+        var newTodo = evt.target.value;
+        if(!!newTodo) {
+            var newTodo = { todo : newTodo, done : false };
+            ul.appendChild(createTodoEl(newTodo));
+
+            $.post('add', newTodo, function(res){
+                console.log(res);
+            },"json");
+            evt.target.value = "";
+            $.material.init();
+        }
+        evt.preventDefault();
+    }
+});
+
+$.get("todos")
+    .success(function(res){
+        var todos = JSON.parse(res);
+        todos.map(createTodoEl).forEach(function(el){
+            ul.appendChild(el);
+        });
+        $.material.init();
+    });
+//document.querySelector("header").addEventListener("click",function(evt){
+//    var target = evt.target;
+//    if(evt.target.id === "add-todo"){
+//        console.log("button clicked!");
+//    } else if(evt.target.id === "submit-btn"){
+//        //evt.preventDefault();
+//        console.log("submit button clicked!");
+//    } else{
+//        console.log("something other clicked!");
+//    }
+//});
+
