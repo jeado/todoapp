@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>todo app</title>
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.css">
+    <link rel="stylesheet" href="bower_components/bootstrap-material-design/dist/css/ripples.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+    <script src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
+    <style>
+        body {
+            padding-top:100px;
+        }
+        #new-todo {
+            width: 100%;
+        }
+        #todoapp {
+            background-color: #fff;
+            -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border-radius: 2px;
+        }
+    </style>
+</head>
+<body class="container">
+<section id="todoapp" class="well page">
+    <header>
+        <h1>TODO APP</h1>
+        <div class="list-group">
+            <div class="form-group list-group-item">
+                <input id="new-todo" type="text" class="form-control" placeholder="입력하세요" autofocus>
+            </div>
+        </div>
+
+    </header>
+
+    <section id="main">
+        <ul id="todo-list" class="list-group">
+            <li class="list-group-item">
+                <div class="view form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> 할일 1
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="view form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> 할일 2
+                        </label>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="view form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> 할일 3
+                        </label>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </section>
+
+    <footer class="footer row">
+        <div class="col-md-4 col-xs-4">
+            <span id="todo-count"><stoing>1</stoing> 남음</span>
+        </div>
+        <div class="col-md-8 col-xs-8">
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" class="btn btn-default btn-raised">ALL</button>
+                <button type="button" class="btn btn-default btn-raised">Active</button>
+                <button type="button" class="btn btn-default btn-raised">Completed</button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        $.material.init();
+    </script>
+</section>
+</body>
+</html>
