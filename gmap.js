@@ -20,6 +20,13 @@ angular.module('dongseo',[])
                     zoom: 15
                 });
 
+                map.addListener('zoom_changed',function(){
+                    var zoom = map.getZoom();
+                    scope.$applyAsync(function(){
+                        scope.zoom =  zoom;
+                    });
+                });
+
                 scope.$watch('zoom',function(value){
                     if(value === "") map.setZoom(15);
                     else map.setZoom(Number(value));
@@ -34,5 +41,20 @@ angular.module('dongseo',[])
                 },100);
             }
         }
-    }]);
+    }])
+    .directive('hello', function factory($http) {
+        var directiveDefinitionObject = {
+            restrict: "EA",
+            scope : {
+                name : "="
+            },
+            transclude: true,
+            template : "<h1>hello {{name}} <div ng-transclude></div></h1>",
+            link : function (scope, element, attrs) {
+                $http.get('users').success(function(data){console.log(data)});
+            }
+        };
+        return directiveDefinitionObject;
+    });
+
 

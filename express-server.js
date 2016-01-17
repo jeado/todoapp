@@ -50,6 +50,8 @@ app.use('/bower_components',express.static(__dirname+'/bower_components'));
 app.use('/node_modules',express.static(__dirname+'/node_modules'));
 app.use('/todo.js',express.static('todo.js'));
 app.use('/gmap.js',express.static('gmap.js'));
+app.use('/todoService.js',express.static('todoService.js'));
+app.use('/mockTodoService.js',express.static('mockTodoService.js'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.listen(8080, function () {

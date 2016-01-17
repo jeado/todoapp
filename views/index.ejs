@@ -78,6 +78,11 @@
                 </div>
             </div>
         </footer>
+        <hello name="appName">
+            <h1>응?</h1>
+        </hello>
+        <hello></hello>
+        <hello></hello>
         <input class="form-control" type="range" name="points" min="10" max="20" ng-model="zoom">{{zoom}}
         <select class="form-control" name="cordis" id="cordis" ng-options="cordi.name for cordi in cordis"
                 ng-model="selectedCordi"></select>{{selectedCordi}}
@@ -87,6 +92,7 @@
 
 
         <script src="../todo.js"></script>
+        <script src="../todoService.js"></script>
     </section>
     <script>
         $.material.init();

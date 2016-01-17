@@ -1,8 +1,26 @@
 angular.module("todoApp", ['dongseo'])
-    .controller("mainCtrl",function($scope, $http){
+    .constant('ZOOM', 15)
+    .config(['TestProvider','todoServiceProvider',function(TestProvider,todoServiceProvider){
+        //TestProvider.setName("jay");
+        console.log(todoServiceProvider);
+    }])
+    .provider('Test',function(){
+        var n = "test";
+        this.setName = function(name){
+            console.log(name);
+            n = name;
+        };
+        this.$get = function(){
+            return {
+                name : n
+            }
+        }
+    })
+    .controller("mainCtrl",function($scope, $http, ZOOM, todoService, Test){
+        console.log(Test);
         $scope.appName = "TODO APP";
         $scope.todos = [];
-        $scope.zoom = 15;
+        $scope.zoom = ZOOM;
         $scope.cordis = [
             {
                 name : "동서대",
@@ -14,21 +32,18 @@ angular.module("todoApp", ['dongseo'])
             }
         ];
         $scope.selectedCordi = $scope.cordis[0];
-        $scope.getTodos = function(){
-            $http.get("todos")
-                .success(function(data){
-                    $scope.todos = data;
-                    console.log(data);
-                });
-        };
+
+        todoService.getTodos()
+            .then(function(data){
+                $scope.todos = data.data;
+            });
 
         $scope.addTodo = function(todoText){
-            $http.post('add',{
-                todo : todoText,
-                done : false
-            }).success(function(data){
-                $scope.getTodos();
-            });
+            todoService.addTodo(todoText).then(function(data){
+                    todoService.getTodos().then(function(data){
+                        $scope.todos = data.data;
+                    });
+                });
         };
 
         $scope.remain = function(){
