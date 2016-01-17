@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sample">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/angular/angular.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.0.3.js"></script>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <uib-alert>hello</uib-alert>
+    <uib-pagination total-items="10" ng-model="1" ng-change="pageChanged()"></uib-pagination>
+    <uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" num-pages="numPages"></uib-pagination>
+</body>
+<script>
+    angular.module("sample",["ui.bootstrap"]);
+</script>
+</html>

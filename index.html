@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="todoApp">
 <head>
     <meta charset="UTF-8">
     <title>todo app</title>
@@ -13,6 +13,7 @@
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
     <script src="bower_components/bootstrap-material-design/dist/js/ripples.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
     <style>
         body {
             padding-top:100px;
@@ -28,49 +29,60 @@
         }
     </style>
 </head>
-<body class="container">
-<section id="todoapp" class="well page">
-    <header>
-        <h1 class="text-center">TODO APP</h1>
-        <div class="list-group">
-            <form action="/ass">
-                <div class="form-group list-group-item row">
-                    <div class="col-md-10 col-xs-10">
-                        <input id="new-todo" type="text" class="form-control" placeholder="입력하세요" autofocus>
+<body class="container" ng-controller="mainCtrl" ng-init="getTodos()">
+    <section id="todoapp" class="well page">
+        <header>
+            {{1+2 | currency}}
+            <h1 class="text-center">{{appName | lowercase}}</h1>
+            <div class="list-group">
+                <form action="/ass">
+                    <div class="form-group list-group-item row">
+                        <div class="col-md-10 col-xs-10">
+                            <input id="new-todo" type="text" class="form-control" placeholder="입력하세요" ng-model="newTodo" autofocus>
+                        </div>
+                        <div class="col-md-2 col-xs-2">
+                            <button type="button" id="add-todo" class="btn btn-success btn-raised" ng-click="addTodo(newTodo)">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-md-2 col-xs-2">
-                        <button type="button" id="add-todo" class="btn btn-success btn-raised">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                        <!--<input id="submit-btn" class="btn btn-raised btn-danger" type="submit" value="이상한버튼">-->
-                    </div>
-                </div>
-            </form>
-        </div>
-
-    </header>
-
-    <section id="main">
-
-    </section>
-
-    <footer class="footer row">
-        <div class="col-md-4 col-xs-4">
-            <span id="todo-count"><stoing>1</stoing> 남음</span>
-        </div>
-        <div class="col-md-8 col-xs-8">
-            <div class="btn-group" role="group" aria-label="...">
-                <button type="button" class="btn btn-default btn-raised">ALL</button>
-                <button type="button" class="btn btn-default btn-raised">Active</button>
-                <button type="button" class="btn btn-default btn-raised">Completed</button>
+                </form>
             </div>
-        </div>
-    </footer>
 
-    <script src="todo.js"></script>
+        </header>
+
+        <section id="main">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="todo in todos">
+                    <div class="view form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="todo.done"> {{todo.todo}}
+                                {{todo}} {{appName}}
+                            </label>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <footer class="footer row">
+            <div class="col-md-4 col-xs-4">
+                <span id="todo-count"><stoing>{{remain()}}</stoing> 남음 / {{todos.length}}</span>
+            </div>
+            <div class="col-md-8 col-xs-8">
+                <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default btn-raised">ALL</button>
+                    <button type="button" class="btn btn-default btn-raised">Active</button>
+                    <button type="button" class="btn btn-default btn-raised">Completed</button>
+                </div>
+            </div>
+        </footer>
+
+        <script src="todo.js"></script>
+    </section>
     <script>
         $.material.init();
     </script>
-</section>
 </body>
 </html>

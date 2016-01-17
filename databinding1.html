@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery databding</title>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+</head>
+<body>
+    <input id="name" type="text">
+    <span id="hello"></span>
+    <button id="change-btn">change</button>
+    <script>
+        var nameEl = $("#name");
+        var helloEl = $("#hello");
+        var buttonEl = $("#change-btn");
+        var helloWold = "";
+        nameEl.on('keyup',function(){
+            helloWold = nameEl.val();
+            helloEl.text(helloWold);
+        });
+        buttonEl.on('click',function(){
+            helloWold = 'hello ~~';
+            helloEl.text(helloWold);
+            nameEl.val(helloWold);
+        });
+    </script>
+</body>
+</html>

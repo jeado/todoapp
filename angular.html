@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="person">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/angular/angular.min.js"></script>
+</head>
+<body ng-controller="mainCtrl">
+    <h1>Hello {{person.name}}</h1>
+    <h2>좋아하는 과일</h2>
+    <ul>
+        <li ng-repeat="fruit in person.favorite">
+            <p>과일 이름 : {{fruit}}</p>
+        </li>
+    </ul>
+    <input type="text" ng-model="newFavorite">
+    <button ng-click="addFavorite(newFavorite)">과일 추가</button>
+    <script>
+        angular.module("person",[])
+            .controller("mainCtrl",function($scope, $http){
+                var getPerson = function(){
+                    $http.get("person").success(function(data){
+                        $scope.person = data;
+                    });
+                };
+
+                $scope.addFavorite = function(newItem){
+                    $http.post("favorite",{favorite:newItem})
+                        .success(function(data){
+                            getPerson();
+                            $scope.newFavorite = "";
+                        });
+                };
+
+                getPerson();
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sample">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <style>.box{  width: 100%;  height: 200px;  border: 1px solid #000;}</style>
+</head>
+<body ng-controller="bodyCtrl">
+    <input type="radio" ng-model="selected" value="M"> 남
+    <input type="radio" ng-model="selected" value="F"> 여
+    {{selected}}
+    <div ng-switch="selected">
+        <div ng-switch-when="M">남자 약관</div>
+        <div ng-switch-when="F">여자 약관</div>
+        <div ng-switch-default>성별을 선택해주세요.</div>
+    </div>
+    <input type="checkbox" ng-model="checked"> 동의여부
+    <button ng-show="checked">다음으로 넘어가기</button>
+    <script>
+        angular.module("sample",[])
+                .controller("bodyCtrl",function($scope){
+                    $scope.a = 2;
+                    $scope.$watch('selected',function(newValue,lastValue){
+                       console.log("새로운 값 : "+newValue);
+                       console.log("이전 값 : "+lastValue);
+                    });
+                    console.log($scope.$new().$eval('a'));
+//                    $scope.name="body";
+                });
+    </script>
+</body>
+</html>
